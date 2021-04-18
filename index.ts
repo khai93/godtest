@@ -19,6 +19,8 @@ class UsernameNotValidError extends Error {
 
         // capturing the stack trace keeps the reference to your error class
         Error.captureStackTrace(this, this.constructor);
+
+        this.stack = new Error().stack;
     }
 }
 
@@ -31,7 +33,7 @@ class PasswordNotValidError extends Error {
         this.name = this.constructor.name;
 
         // capturing the stack trace keeps the reference to your error class
-        Error.captureStackTrace(this, this.constructor);
+        this.stack = new Error().stack;
     }
 }
 
