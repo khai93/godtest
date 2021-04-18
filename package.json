@@ -1,0 +1,10 @@
+{
+  "name": "godtest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "tslog": "^3.2.0",
+    "typescript": "^4.2.4"
+  }
+}

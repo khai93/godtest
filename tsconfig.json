@@ -1,0 +1,10 @@
+{
+    // ...
+    "compilerOptions": {
+        "moduleResolution": "node",
+        // ...
+        "sourceMap": true,
+        // we recommend using a current ES version
+        "target": "es2019",
+    }
+}
