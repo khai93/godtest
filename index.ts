@@ -11,10 +11,6 @@ export interface IValidatable {
     isValid(): boolean
 }
 
-export interface Value<T> {
-    value(): T 
-}
-
 class UsernameNotValidError extends Error {
 
     constructor(message : string) {
@@ -27,9 +23,6 @@ class UsernameNotValidError extends Error {
 
         this.stack = new Error().stack;
     }
-
-    
-    
 }
 
 
@@ -45,56 +38,56 @@ class PasswordNotValidError extends Error {
     }
 }
 
-export class Username implements IValidatable, Value<string> {
-    private _username: string;
+export class Username implements IValidatable {
+    private _value: string;
 
     constructor(username: string) {
-        this._username = username;
+        this._value = username;
 
         if (!this.isValid()) {
             throw new UsernameNotValidError("Username has less than 3 characters");
         }
     }
 
-    value(): string {
-        return this._username
+    get value(): string {
+        return this._value
     }
 
-    isValid = () => this._username.length >= 3;
+    isValid = () => this._value.length >= 3;
 }
 
 export class Age implements IValidatable {
-    private _age: number;
+    private _value: number;
 
     constructor(age: number) {
-        this._age = age;
+        this._value = age;
     }
 
     isValid(): boolean {
         return true;
     }
 
-    get(): number {
-        return this._age;
+    get value(): number {
+        return this._value;
     }
 }
 
-export class Password implements IValidatable, Value<string> {
-    private _password: string;
+export class Password implements IValidatable {
+    private readonly _value: string;
 
     constructor(username: string) {
-        this._password = username;
-
+        this._value = username;
+        
         if (!this.isValid()) {
             throw new PasswordNotValidError("Password has less than 3 characters");
         }
     }
 
-    value(): string {
-        return this._password;
+    get value(): string {
+        return this._value;
     }
 
-    isValid = () => this._password.length >= 3;
+    isValid = () => this._value.length >= 3;
 }
 
 class Danny {
@@ -103,17 +96,17 @@ class Danny {
     }
 
     register(username: Username, password: Password) {
-        this.dependencies.logger.log(`Registering as ${username.value()}:${password.value()}`)
+        this.dependencies.logger.log(`Registering as ${username.value}:${password.value}`)
         this.dependencies.logger.log("Registered to Roblox.com");
     }
 
     createApp(app: IApp) {
-        this.dependencies.logger.log("Danny created app '" + app.name.value() + "'");
+        this.dependencies.logger.log("Danny created app '" + app.name.value + "'");
         return this.dependencies.app.add(app);
     }
 
     editApp(id: ID, editedApp: IApp) {
-        this.dependencies.logger.log("Danny edited App '" + editedApp.name.value() + "'");
+        this.dependencies.logger.log("Danny edited App '" + editedApp.name.value + "'");
         return this.dependencies.app.edit(id, editedApp);
     }
 

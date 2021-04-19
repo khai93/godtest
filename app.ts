@@ -15,7 +15,7 @@
     TRY TO FOLLOW THE CODE STYLE OF EXISTING CODE.
 */
 
-import { IValidatable, Value } from ".";
+import { IValidatable } from ".";
 
 
 
@@ -51,15 +51,15 @@ export interface IAppModule {
     get(Id: ID): Promise<IApp>;
 }
 
-export class ID implements IValidatable, Value<number> {
-    private _id: number;
+export class ID implements IValidatable {
+    private _value: number;
 
     constructor(id: number) {
-        this._id = id;
+        this._value = id;
     }
 
-    value(): number {
-        return this._id;
+    get value(): number {
+        return this._value;
     }
 
     isValid(): boolean {
@@ -67,15 +67,15 @@ export class ID implements IValidatable, Value<number> {
     }
 }
 
-export class Name implements IValidatable, Value<string> {
-    private _appName: string;
+export class Name implements IValidatable {
+    private _value: string;
 
     constructor(name: string) {
-        this._appName = name;
+        this._value = name;
     }
 
-    value(): string {
-        return this._appName
+    get value(): string {
+        return this._value;
     }
 
     isValid(): boolean {
@@ -95,23 +95,23 @@ class DescriptionNotValid extends Error {
     }
 }
 
-export class Description implements IValidatable, Value<string> {
-    private _description: string;
+export class Description implements IValidatable {
+    private _value: string;
 
     constructor(name: string) {
-        this._description = name;
+        this._value = name;
 
         if (!this.isValid()) {
             throw new DescriptionNotValid("Description length cannot be smaller than 5.");
         }
     }
 
-    value(): string {
-        return this._description;
+    get value(): string {
+        return this._value;
     }
 
     isValid(): boolean {
-        return this._description.length >= 5;
+        return this._value.length >= 5;
     }
 }
 
