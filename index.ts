@@ -11,14 +11,14 @@ export interface IValidatable {
 
 
 class UsernameNotValidError extends Error {
-    constructor(message) {
+
+    constructor(message : string) {
         super(message);
 
         // assign the error class name in your custom error (as a shortcut)
         this.name = this.constructor.name;
 
         // capturing the stack trace keeps the reference to your error class
-        Error.captureStackTrace(this, this.constructor);
 
         this.stack = new Error().stack;
     }
@@ -26,7 +26,7 @@ class UsernameNotValidError extends Error {
 
 
 class PasswordNotValidError extends Error {
-    constructor(message) {
+    constructor(message : string) {
         super(message);
 
         // assign the error class name in your custom error (as a shortcut)
@@ -84,7 +84,7 @@ const LoggerModule = new TsLogLoggerModule({tsLogLogger: new Logger({})});
 const DannyInstance = new Danny({logger: LoggerModule});
 
 try {
-    DannyInstance.register(new Username("dng"), new Password("12"));
+    DannyInstance.register(new Username("dng"), new Password("13232"));
 } catch (e) {
     DannyInstance.scream(e);
 }

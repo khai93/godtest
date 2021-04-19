@@ -2,9 +2,9 @@ import { ILogObject, Logger, LoggerWithoutCallSite } from "tslog";
 
 LoggerWithoutCallSite
 export interface ILoggerModule {
-    log(message: string);
-    warn(message: string);
-    error(error: Error);
+    log(message: string) : void;
+    warn(message: string) : void;
+    error(error: Error) : void;
 }
 
 
@@ -27,7 +27,7 @@ export type TsLogLoggerModuleDependencies = {
 }
 
 export class TsLogLoggerModule implements ILoggerModule {
-    
+
     constructor(private dependencies: TsLogLoggerModuleDependencies) {}
 
     log(message: string) {
